@@ -156,6 +156,7 @@ jQuery(function($) {
 				data : {
 					email : $('#loginEmail').val(),
 					password : $('#loginPassword').val(),
+					imageCode : $('#imageCode').val(),
 					rememberMe : $("input[name='rememberMe']:checked").val()
 				},
 				complete : function(xmlRequest) {

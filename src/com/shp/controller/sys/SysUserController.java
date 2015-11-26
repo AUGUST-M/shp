@@ -99,6 +99,7 @@ public class SysUserController extends JavaEEFrameworkBaseController<SysUser> im
 			writeJSON(response, result);
 			return;
 		}
+		session.removeAttribute(Constant.SESSION_SECURITY_CODE);
 		sysUser.setLastLoginTime(new Date());
 		sysUserService.merge(sysUser);
 		

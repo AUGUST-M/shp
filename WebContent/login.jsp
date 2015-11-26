@@ -83,7 +83,7 @@
 													<label>
 														<span class="block input-icon input-icon-right">
 															<input type="text" name="imageCode" id="imageCode" placeholder="验证码" />
-															<i><img style="height:22px;" id="codeImg" alt="点击更换" title="点击更换" src="" /></i>
+															<i><img style="height:30px;" id="codeImg" alt="点击更换" title="点击更换" src="" /></i>
 														</span>
 													</label>
 													
