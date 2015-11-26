@@ -80,6 +80,9 @@ public class SysUserController extends JavaEEFrameworkBaseController<SysUser> im
 	@RequestMapping("/login")
 	public void login(SysUser sysUserModel, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Map<String, Object> result = new HashMap<String, Object>();
+		Subject subject = SecurityUtils.getSubject();
+		Session session = subject.getSession();
+		String sessionCode = (String) session.getAttribute(Constant.SESSION_SECURITY_CODE);//获取session的图片验证码
 		SysUser sysUser = sysUserService.getByProerties("email", sysUserModel.getEmail());
 		if (sysUser == null || sysUser.getStatus() == true) { // 用户名有误或已被禁用
 			result.put("result", -1);
@@ -91,11 +94,15 @@ public class SysUserController extends JavaEEFrameworkBaseController<SysUser> im
 			writeJSON(response, result);
 			return;
 		}
+		if(!sessionCode.equalsIgnoreCase(sysUserModel.getImageCode())){//验证码错误
+			result.put("result", -3);
+			writeJSON(response, result);
+			return;
+		}
 		sysUser.setLastLoginTime(new Date());
 		sysUserService.merge(sysUser);
-		Subject subject = SecurityUtils.getSubject();
+		
 		subject.login(new UsernamePasswordToken(sysUserModel.getEmail(), sysUserModel.getPassword(), sysUserModel.isRememberMe()));
-		Session session = subject.getSession();
 		session.setAttribute(SESSION_SYS_USER, sysUser);
 		session.setAttribute("ROLE_KEY", sysUser.getRoles().iterator().next().getRoleKey());
 		result.put("result", 1);

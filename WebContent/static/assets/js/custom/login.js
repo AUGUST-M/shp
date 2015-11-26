@@ -5,6 +5,15 @@ function getContextPath() {
 	return result;
 }
 
+function genTimestamp() {
+	var time = new Date();
+	return time.getTime();
+}
+
+function changeCode() {
+	$("#codeImg").attr("src", "code/generateImageCode?t=" + genTimestamp());
+}
+
 jQuery(function($) {
 	$(document).on('click', '.toolbar a[data-target]', function(e) {
 		e.preventDefault();
@@ -12,6 +21,9 @@ jQuery(function($) {
 		$('.widget-box.visible').removeClass('visible');// hide others
 		$(target).addClass('visible');// show target
 	});
+	
+	changeCode();
+	$("#codeImg").bind("click", changeCode);
 
 	// 登录页面切换背景图
 	$('#btn-login-dark').on('click', function(e) {
@@ -106,6 +118,9 @@ jQuery(function($) {
 				required : true,
 				minlength : 6,
 				maxlength : 14
+			},
+			imageCode : {
+				required : true
 			}
 		},
 		messages : {
@@ -117,6 +132,9 @@ jQuery(function($) {
 				required : "请输入密码",
 				minlength : "密码长度至少为6个字符",
 				maxlength : "密码长度至多为14个字符"
+			},
+			imageCode : {
+				required : "请输入验证码"
 			}
 		},
 		highlight : function(e) {
@@ -148,9 +166,11 @@ jQuery(function($) {
 						$("#loginTip").html("用户名有误或已被禁用");
 					} else if (returninfo.result == -2) {
 						$("#loginTip").html("密码错误");
-					} else {
+					} else if (returninfo.result == -3){
+						$("#loginTip").html("验证码错误");
+					}else {
 						$("#loginTip").html("服务器错误");
-					}
+					} 
 				}
 			});
 		},

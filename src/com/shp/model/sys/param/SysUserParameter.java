@@ -16,6 +16,7 @@ public class SysUserParameter extends ExtJSBaseParameter {
 	private String $eq_email;
 	private String $like_userName;
 	private String filePath;
+	private String imageCode; //image auth code
 	private String departmentValue; // 部门名称
 	private boolean rememberMe; // 下次自动登录
 
@@ -91,4 +92,12 @@ public class SysUserParameter extends ExtJSBaseParameter {
 		this.role = role;
 	}
 
+	public String getImageCode() {
+		return imageCode;
+	}
+
+	public void setImageCode(String imageCode) {
+		this.imageCode = imageCode;
+	}
+	
 }
