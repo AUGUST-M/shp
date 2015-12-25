@@ -3,7 +3,7 @@
  * File Name:StringUtil.java
  * Package Name:core.util
  * Date:2015年12月25日上午11:31:18
- * Copyright (c) 2015, chenzhou1025@126.com All Rights Reserved.
+ * Copyright (C) 2015 - 2020 SHP快易全栈应用开发平台
  *
 */
 
