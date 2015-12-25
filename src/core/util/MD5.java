@@ -25,7 +25,7 @@ public class MD5 {
 	 * @return Encoded String
 	 * @throws NoSuchAlgorithmException
 	 */
-	public static String crypt(String str) {
+	public static String md5(String str) {
 		if (str == null || str.length() == 0) {
 			throw new IllegalArgumentException("String to encript cannot be null or zero length");
 		}
@@ -45,6 +45,10 @@ public class MD5 {
 			e.printStackTrace();
 		}
 		return hexString.toString();
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(md5("www.shp.com"));
 	}
 
 }
