@@ -17,7 +17,7 @@
 		<span style="line-height:1.5;">新注册的用户权限低，默认密码是123456。管理员才可以看到界面全部效果，管理员账号和密码看邮件说明。可以在角色权限管理对用户授权。</span>
 	</li>
 	<li>
-		<span style="line-height:1.5;">APP接口：com.jeefw.app.bean包、com.jeefw.app.logic包和AppSendUtils都是和APP接口有关的代码，测试类查看TestApp。</span>
+		<span style="line-height:1.5;">APP接口：com.shp.app.bean包、com.shp.app.logic包和AppSendUtils都是和APP接口有关的代码，测试类查看TestApp。</span>
 	</li>
 </ol>
 
