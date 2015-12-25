@@ -73,7 +73,7 @@ public class AppSendUtils {
 		Gson gson = new Gson();
 		String json = gson.toJson(brb);
 		System.out.println(json);
-		result = connectURL("http://localhost:8080/jeefw/client/face", json);
+		result = connectURL("http://localhost:8080/shp/client/face", json);
 		return result;
 	}
 
