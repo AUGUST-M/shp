@@ -19,13 +19,15 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * 修改自Apache的BeanUtils，更简便操作Bean类
+ * 
  * Copyright (C) 2015 - 2020 SHP快易全栈应用开发平台
  */
 public class BeanUtils {
 
 	private static final Log log = LogFactory.getLog(BeanUtils.class);
 
-	public static Map describeAvailableParameter(Object bean) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+	public static Map describeAvailableParameter(Object bean)
+			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 		if (bean == null) {
 			return (new java.util.HashMap());
 		}
@@ -37,13 +39,15 @@ public class BeanUtils {
 				description.put(name, org.apache.commons.beanutils.BeanUtils.getProperty(bean, name));
 			}
 		} else {
-			PropertyDescriptor[] descriptors = BeanUtilsBean.getInstance().getPropertyUtils().getPropertyDescriptors(bean);
+			PropertyDescriptor[] descriptors = BeanUtilsBean.getInstance().getPropertyUtils()
+					.getPropertyDescriptors(bean);
 			Class clazz = bean.getClass();
 			for (int i = 0; i < descriptors.length; i++) {
 				String name = descriptors[i].getName();
 				if (name.startsWith("$")) {
 					// System.out.println("clazz===" + clazz);
-					// System.out.println("descriptors[i].getReadMethod()===" + descriptors[i].getReadMethod());
+					// System.out.println("descriptors[i].getReadMethod()===" +
+					// descriptors[i].getReadMethod());
 					if (MethodUtils.getAccessibleMethod(clazz, descriptors[i].getReadMethod()) != null) {
 						description.put(name, PropertyUtils.getNestedProperty(bean, name));
 					}
@@ -54,7 +58,8 @@ public class BeanUtils {
 	}
 
 	// revise BeanUtils describe method do not copy data type
-	public static Map describe(Object bean) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+	public static Map describe(Object bean)
+			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 		if (bean == null) {
 			return (new java.util.HashMap());
 		}
@@ -66,7 +71,8 @@ public class BeanUtils {
 				description.put(name, org.apache.commons.beanutils.BeanUtils.getProperty(bean, name));
 			}
 		} else {
-			PropertyDescriptor[] descriptors = BeanUtilsBean.getInstance().getPropertyUtils().getPropertyDescriptors(bean);
+			PropertyDescriptor[] descriptors = BeanUtilsBean.getInstance().getPropertyUtils()
+					.getPropertyDescriptors(bean);
 			Class clazz = bean.getClass();
 			for (int i = 0; i < descriptors.length; i++) {
 				String name = descriptors[i].getName();
@@ -90,7 +96,8 @@ public class BeanUtils {
 		notCopyProperties.add("cmd");
 	}
 
-	public static void copyProperties(Object dest, Object orig) throws IllegalAccessException, InvocationTargetException {
+	public static void copyProperties(Object dest, Object orig)
+			throws IllegalAccessException, InvocationTargetException {
 
 		// Validate existence of the specified beans
 		if (dest == null) {
@@ -125,7 +132,7 @@ public class BeanUtils {
 					bub.copyProperty(dest, name, entry.getValue());
 				}
 			}
-		} else /* if (orig is a standard JavaBean) */{
+		} else /* if (orig is a standard JavaBean) */ {
 			PropertyDescriptor[] origDescriptors = bub.getPropertyUtils().getPropertyDescriptors(orig);
 			for (int i = 0; i < origDescriptors.length; i++) {
 				String name = origDescriptors[i].getName();
@@ -144,7 +151,8 @@ public class BeanUtils {
 		}
 	}
 
-	public static void copyPropertiesExceptNull(Object dest, Object orig) throws IllegalAccessException, InvocationTargetException {
+	public static void copyPropertiesExceptNull(Object dest, Object orig)
+			throws IllegalAccessException, InvocationTargetException {
 
 		// Validate existence of the specified beans
 		if (dest == null) {
@@ -179,7 +187,7 @@ public class BeanUtils {
 					bub.copyProperty(dest, name, entry.getValue());
 				}
 			}
-		} else /* if (orig is a standard JavaBean) */{
+		} else /* if (orig is a standard JavaBean) */ {
 			PropertyDescriptor[] origDescriptors = bub.getPropertyUtils().getPropertyDescriptors(orig);
 			for (int i = 0; i < origDescriptors.length; i++) {
 				String name = origDescriptors[i].getName();
@@ -200,7 +208,8 @@ public class BeanUtils {
 		}
 	}
 
-	public static void copyProperties(Object dest, Object orig, List<String> excludedProp) throws IllegalAccessException, InvocationTargetException {
+	public static void copyProperties(Object dest, Object orig, List<String> excludedProp)
+			throws IllegalAccessException, InvocationTargetException {
 
 		// Validate existence of the specified beans
 		if (dest == null) {
@@ -235,7 +244,7 @@ public class BeanUtils {
 					bub.copyProperty(dest, name, entry.getValue());
 				}
 			}
-		} else /* if (orig is a standard JavaBean) */{
+		} else /* if (orig is a standard JavaBean) */ {
 			PropertyDescriptor[] origDescriptors = bub.getPropertyUtils().getPropertyDescriptors(orig);
 			for (int i = 0; i < origDescriptors.length; i++) {
 				String name = origDescriptors[i].getName();
